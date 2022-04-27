@@ -48,10 +48,21 @@ app.use(session({
     }
 }))
 
-app.post("/login",(req,res)=>{
-
-    req.session.user={username:"pepe"}
-    res.send("inicio sesion correctamente")
+app.get('/login',(req,res)=>{
+    res.send(`
+    <html>
+        <head>
+            <title>Login</title>
+        </head>    
+        <body>
+            <form method="POST" action="/auth">
+                Nombre de usuario: <input type="text" name="text">
+                Contraseña: <input type="password" name="password">
+                <input type="submit" value="Iniciar sesion">
+            </form>
+        </body>
+    
+    `)
 })
 
 app.post('/auth',(req,res)=>{
